@@ -169,3 +169,6 @@ Packages/packages-lock.json linguist-generated
 
 # Exceptions for .asset files such as lightning pre-baking
 LightingData.asset     binary
+
+# Ignorar archivos autogenerados del SDK de Windows/Xbox
+/[Aa]ssets/Resources/GDKEditionAutoGen*
