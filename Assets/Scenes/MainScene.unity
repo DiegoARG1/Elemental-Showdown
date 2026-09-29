@@ -133,6 +133,8 @@ GameObject:
   - component: {fileID: 143758439}
   - component: {fileID: 143758438}
   - component: {fileID: 143758437}
+  - component: {fileID: 143758444}
+  - component: {fileID: 143758443}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -152,7 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc3cb123a1b16e45994778ea7ebb147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
 --- !u!50 &143758438
 Rigidbody2D:
   serializedVersion: 5
@@ -331,6 +332,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &143758443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143758436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ead1b22ab6b024084977c56c274b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterBuilder
+  characterData: {fileID: 11400000, guid: ff41a452e743f294986ee6c8133f3dd0, type: 2}
+--- !u!114 &143758444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143758436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef695f6080545043a968b8376130821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSystem
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

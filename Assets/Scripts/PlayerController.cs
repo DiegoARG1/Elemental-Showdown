@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    private float moveSpeed;
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Initialize(float speedFromData)
+    {
+        moveSpeed = speedFromData;
     }
 
     void OnMove(InputValue value)

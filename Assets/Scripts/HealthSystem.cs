@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class HealSystem : MonoBehaviour, IDamageable
+public class HealthSystem : MonoBehaviour, IDamageable
 {
     // Eventos para desacoplar la UI y otros sistemas
     public event Action<float, float> OnHealthChanged; // Manda vida actual y vida maxima
