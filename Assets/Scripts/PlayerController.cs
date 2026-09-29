@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        moveInput.Normalize();
     }
 
     void FixedUpdate()
