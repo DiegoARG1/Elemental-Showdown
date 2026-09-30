@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(SkillManager))]
 public class CharacterBuilder : MonoBehaviour   
 {
     [Header("CharacterData")]
@@ -21,7 +22,14 @@ public class CharacterBuilder : MonoBehaviour
         //Inyectar las variables del ScriptableObject
         health.Initialize(characterData.maxHealth, characterData.maxLives);
         movement.Initialize(characterData.moveSpeed);
-
-        // (En el futuro, aqui tambien inyectaremos los datos al SkillManager)
+        SkillManager skills = GetComponent<SkillManager>();
+        if (characterData.basicAttackPrefab != null)
+        {
+            skills.Initialize(characterData.basicAttackPrefab);
+        }
+        else
+        {
+            Debug.LogWarning($"[{gameObject.name}] El CharacterData no tiene un Basic Attack asignado.");
+        }
     }
 }

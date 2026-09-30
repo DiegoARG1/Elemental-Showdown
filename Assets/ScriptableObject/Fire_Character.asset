@@ -16,6 +16,6 @@ MonoBehaviour:
   maxLives: 3
   maxHealth: 100
   moveSpeed: 20
-  basicAttackPrefab: {fileID: 0}
+  basicAttackPrefab: {fileID: 3582689697873630716, guid: e6a384af9be3f684d90b94e748963486, type: 3}
   ability1Prefab: {fileID: 0}
   ability2Prefab: {fileID: 0}
