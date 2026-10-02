@@ -6,7 +6,9 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class CombatInputManager : MonoBehaviour
 {
-    public static event Action<Vector2> OnBasicAttackReleased;
+    public static event Action<Vector2> OnBasicAttackStarted;
+    public static event Action<Vector2> OnBasicAttackStay;
+    public static event Action OnBasicAttackEnded;
 
     private Vector2 startTouchPosition;
     private Finger trackingFinger; // Guarda el ID del dedo atacante
@@ -16,12 +18,14 @@ public class CombatInputManager : MonoBehaviour
         EnhancedTouchSupport.Enable();
         TouchSimulation.Enable();
         Touch.onFingerDown += HandleFingerDown;//Presiona
+        Touch.onFingerMove += HandleFingerMove;//Mueve
         Touch.onFingerUp += HandleFingerUp;//Suelta
     }
 
     private void OnDisable()
     {
         Touch.onFingerDown -= HandleFingerDown;
+        Touch.onFingerMove -= HandleFingerMove;
         Touch.onFingerUp -= HandleFingerUp;
         TouchSimulation.Disable();
         EnhancedTouchSupport.Disable();
@@ -33,6 +37,20 @@ public class CombatInputManager : MonoBehaviour
         {
             trackingFinger = finger; // Bloqueamos nuestra mira en este dedo
             startTouchPosition = finger.screenPosition;
+            OnBasicAttackStarted?.Invoke(Vector2.right);//Ataque por defecto a la derecha
+        }
+    }
+
+    private void HandleFingerMove(Finger finger)
+    {
+        if (trackingFinger == finger)
+        {
+            Vector2 dragDirection = (finger.screenPosition - startTouchPosition).normalized;
+
+            if (dragDirection != Vector2.zero)
+            {
+                OnBasicAttackStay?.Invoke(dragDirection);//Manda hacia donde apunta
+            }
         }
     }
 
@@ -41,19 +59,7 @@ public class CombatInputManager : MonoBehaviour
         // Solo respondemos si el dedo que se acaba de levantar es el mismo que tenemos rastreando
         if (trackingFinger == finger)
         {
-            Vector2 endTouchPosition = finger.screenPosition;
-
-            // Calculamos hacia donde arrastro el dedo y normalizamos el valor (para que su longitud sea 1)
-            Vector2 dragDirection = (endTouchPosition - startTouchPosition).normalized;
-
-            // Si el jugador solo hizo "Tap" (tocó y solto sin arrastrar)
-            if (dragDirection == Vector2.zero)
-            {
-                dragDirection = Vector2.right; // Por defecto disparamos a la derecha
-            }
-
-            OnBasicAttackReleased?.Invoke(dragDirection);//pasamos la direccion
-
+            OnBasicAttackEnded?.Invoke();//Sueltas el dedo
             trackingFinger = null;
         }
     }

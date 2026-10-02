@@ -8,5 +8,9 @@ public struct AbilityContext
 
 public interface IAbility
 {
-    void Execute(AbilityContext context);
+    void OnInputStarted(AbilityContext context);//Se llama en cuanto tocas la pantalla
+
+    void OnInputStay(AbilityContext context);//Se llama mientras mantienes presionada la pantalla 
+
+    void OnInputEnded(AbilityContext context);//Se llama cuando el dedo se levanta
 }
