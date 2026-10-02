@@ -25,7 +25,7 @@ public class CharacterBuilder : MonoBehaviour
         SkillManager skills = GetComponent<SkillManager>();
         if (characterData.basicAttackPrefab != null)
         {
-            skills.Initialize(characterData.basicAttackPrefab);
+            skills.Initialize(characterData.basicAttackPrefab,characterData.skill1Prefab);
         }
         else
         {

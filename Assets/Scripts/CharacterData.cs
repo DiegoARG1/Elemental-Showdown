@@ -11,6 +11,6 @@ public class CharacterData : ScriptableObject
 
     [Header("Habilidades (Prefabs)")]
     public GameObject basicAttackPrefab;
-    public GameObject ability1Prefab;
-    public GameObject ability2Prefab;
+    public GameObject skill1Prefab;
+    public GameObject skill2Prefab;
 }

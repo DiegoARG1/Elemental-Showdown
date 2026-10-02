@@ -19,6 +19,7 @@ public class FireConeAbility : MonoBehaviour,IAbility
     private GameObject caster;
     private Collider2D coneCollider;
     private SpriteRenderer spriteVisual;
+    private SkillManager mySkillManager;
     private void Awake()
     {
         currentFuel = maxFuel;
@@ -30,9 +31,11 @@ public class FireConeAbility : MonoBehaviour,IAbility
 
     public void OnInputStarted(AbilityContext context)//Cuando tocas la pantalla
     {
-        if (currentFuel > 0)
+        caster = context.Caster;
+        mySkillManager = caster.GetComponent<SkillManager>();
+        bool isInfinite = mySkillManager != null && mySkillManager.hasInfiniteAmmo;//evaluamos si la skill 1 esta encendida
+        if (currentFuel > 0 || isInfinite)
         {
-            caster = context.Caster;
             isFiring = true;
             coneCollider.enabled = true;
             if (spriteVisual != null) spriteVisual.enabled = true;
@@ -67,14 +70,19 @@ public class FireConeAbility : MonoBehaviour,IAbility
     // Update is called once per frame
     void Update()
     {
+        bool isInfinite = mySkillManager != null && mySkillManager.hasInfiniteAmmo;
+
         if (isFiring)
         {
-            currentFuel -= fuelCostPerSecond * Time.deltaTime;//Gasto de gasolina
-
-            if (currentFuel <= 0)//Si no hay combustible no se puedo usar el fuego
+            if (!isInfinite)
             {
-                currentFuel = 0;
-                StopFiring();
+                currentFuel -= fuelCostPerSecond * Time.deltaTime;
+
+                if (currentFuel <= 0)//Si no hay combustible no se puedo usar el fuego
+                {
+                    currentFuel = 0;
+                    StopFiring();
+                }
             }
         }
         else
