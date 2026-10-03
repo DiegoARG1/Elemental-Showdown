@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f710cbaa640a534bab53a2445db7c14, type: 3}
+  m_Name: Fire_Character
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: FireGuy
+  maxLives: 3
+  maxHealth: 100
+  moveSpeed: 10
+  basicAttackPrefab: {fileID: 4136985792941231783, guid: 9861ef6bc660d0c48b2af16114a95210, type: 3}
+  skill1Prefab: {fileID: 8330629676934029359, guid: 4ec13e6271a23cf4aab73ffebcb660a8, type: 3}
+  skill2Prefab: {fileID: 9000100693719326031, guid: e34c3511d4426484eb508beb7c0640a7, type: 3}
