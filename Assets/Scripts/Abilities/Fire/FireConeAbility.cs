@@ -1,10 +1,12 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class FireConeAbility : MonoBehaviour,IAbility
 {
     [Header("Daño")]
-    public float damagePerSecond = 20f;
+    public float damagePerTick = 10f;
+    public float tickInterval = 0.5f;
 
     [Header("Combustible")]
     public float maxFuel = 100f;
@@ -20,6 +22,9 @@ public class FireConeAbility : MonoBehaviour,IAbility
     private Collider2D coneCollider;
     private SpriteRenderer spriteVisual;
     private SkillManager mySkillManager;
+
+    private List<IDamageable> enemiesInside = new List<IDamageable>();
+    private float currentTickTimer = 0f;
     private void Awake()
     {
         currentFuel = maxFuel;
@@ -84,6 +89,26 @@ public class FireConeAbility : MonoBehaviour,IAbility
                     StopFiring();
                 }
             }
+            if (isFiring && enemiesInside.Count > 0)
+            {
+                currentTickTimer -= Time.deltaTime;
+                if (currentTickTimer <= 0f)
+                {
+                    for (int i = enemiesInside.Count - 1; i >= 0; i--)
+                    {
+                        IDamageable target = enemiesInside[i];
+                        if (target != null && target as MonoBehaviour != null)
+                        {
+                            target.TakeDamage(damagePerTick);
+                        }
+                        else
+                        {
+                            enemiesInside.RemoveAt(i);
+                        }
+                    }
+                    currentTickTimer = tickInterval;
+                }
+            }
         }
         else
         {
@@ -102,16 +127,27 @@ public class FireConeAbility : MonoBehaviour,IAbility
         isFiring = false;
         coneCollider.enabled = false;
         if (spriteVisual != null) spriteVisual.enabled = false;
+        enemiesInside.Clear();
+        currentTickTimer = 0f;
         //Detener particulas en un futuro
     }
-    private void OnTriggerStay2D(Collider2D collision)//Sistema de daño
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (caster != null && collision.gameObject == caster) return;//Para no hacer daño a si mismo
+        if (caster != null && collision.gameObject == caster) return;
 
         IDamageable target = collision.GetComponent<IDamageable>();
-        if (target != null)
+        if (target != null && !enemiesInside.Contains(target))
         {
-            target.TakeDamage(damagePerSecond * Time.deltaTime);
+            enemiesInside.Add(target);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        IDamageable target = collision.GetComponent<IDamageable>();
+        if (target != null && enemiesInside.Contains(target))
+        {
+            enemiesInside.Remove(target);
         }
     }
 }

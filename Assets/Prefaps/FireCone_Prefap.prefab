@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 689463750085099575}
   - component: {fileID: 1217695928225939394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7595349448255724840}
   - component: {fileID: 3889607194461893228}
   - component: {fileID: 911244949835426901}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireCone_Prefap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,10 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a0bcca5ea31ac46a6d72a73adcfcbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireConeAbility
-  damagePerSecond: 20
+  damagePerTick: 10
+  tickInterval: 0.5
   maxFuel: 100
   fuelCostPerSecond: 35
   fuelRegenRate: 15
+  currentFuel: 0
 --- !u!60 &3889607194461893228
 PolygonCollider2D:
   m_ObjectHideFlags: 0
