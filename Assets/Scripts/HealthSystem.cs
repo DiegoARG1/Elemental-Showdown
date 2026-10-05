@@ -38,6 +38,10 @@ public class HealthSystem : MonoBehaviour, IDamageable
         {
             LoseLife();
         }
+        if (ModuleManager.Instance != null)
+        {
+            ModuleManager.Instance.Vibrate();
+        }
     }
     private void LoseLife()
     {
