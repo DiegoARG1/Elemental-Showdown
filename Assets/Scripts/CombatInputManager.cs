@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;//Para poder probar algo en pc(se puede quitar despues)
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.EnhancedTouch;
 // Usamos un alias para evitar conflictos con el Touch viejo de Unity
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
@@ -60,6 +62,12 @@ public class CombatInputManager : MonoBehaviour
             }
         }
 
+
+        if (IsPointerOverUI(finger.screenPosition))
+        {
+            return;
+        }
+
         if (trackingFinger == null && finger.screenPosition.x > Screen.width / 2f)
         {
             trackingFinger = finger;
@@ -108,5 +116,21 @@ public class CombatInputManager : MonoBehaviour
             OnSkill2Ended?.Invoke();
             skill2Finger = null;
         }
+    }
+
+    private bool IsPointerOverUI(Vector2 screenPosition)//Funcion auxiliar (Se puede quitar despues)
+    {
+        if (EventSystem.current == null) return false;
+
+        // Simulamos un evento de puntero en la posicion exacta del toque
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = screenPosition;
+
+        // Disparamos un rayo para ver si golpea algun elemento grafico del Canvas
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        // Si la lista tiene mas de 0 elementos, significa que tocamos la interfaz
+        return results.Count > 0;
     }
 }
