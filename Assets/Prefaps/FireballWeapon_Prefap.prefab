@@ -138,6 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireballAbility
   fireballPrefab: {fileID: 1036685535998831956, guid: 20ba5f6080f122141a71947641f4300a, type: 3}
-  maxRange: 10
+  maxRange: 6
   cooldown: 5
   indicatorVisual: {fileID: 1999803242300381830}
