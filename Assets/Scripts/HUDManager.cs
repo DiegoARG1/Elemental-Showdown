@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class HUDManager : MonoBehaviour
 {
+    [Header("Jugador")]
+    public HealthSystem playerHealth;
+
     [Header("HUD")]
     public GameObject controlsPanel;
     public Slider healthBar;
@@ -20,10 +23,14 @@ public class HUDManager : MonoBehaviour
     public GameObject tabAudioPage;
     public Toggle vibrationToggle;
 
+    [Header("Game over")]
+    public GameObject gameOverPanel;
+
     private void Start()
     {
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
         if (settingsPanel != null) settingsPanel.SetActive(false);
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
         if (pauseMainButtons != null) pauseMainButtons.SetActive(true);
         if (controlsPanel != null) controlsPanel.SetActive(true);
 
@@ -33,6 +40,26 @@ public class HUDManager : MonoBehaviour
         {
             vibrationToggle.isOn = ModuleManager.Instance.isVibrationEnabled;
             vibrationToggle.onValueChanged.AddListener(OnVibrationToggled);
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.OnHealthChanged += UpdateHealth;
+            playerHealth.OnLivesChanged += UpdateLives;
+            playerHealth.OnDeath += HandleGameOver;
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.OnHealthChanged -= UpdateHealth;
+            playerHealth.OnLivesChanged -= UpdateLives;
+            playerHealth.OnDeath -= HandleGameOver;
         }
     }
 
@@ -49,8 +76,15 @@ public class HUDManager : MonoBehaviour
     {
         if (livesText != null)
         {
-            livesText.text = "X " + currentLives;
+            livesText.text = "  " + currentLives;
         }
+    }
+
+    public void HandleGameOver()
+    {
+        if (gameOverPanel != null) gameOverPanel.SetActive(true);
+        if (controlsPanel != null) controlsPanel.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public void TogglePauseMenu()
