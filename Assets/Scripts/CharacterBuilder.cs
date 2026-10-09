@@ -8,7 +8,7 @@ public class CharacterBuilder : MonoBehaviour
     [Header("CharacterData")]
     [SerializeField] private CharacterData characterData;
 
-    private void Awake()
+    private void Start()
     {
         if (characterData == null)
         {
