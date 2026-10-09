@@ -76,7 +76,7 @@ public class HUDManager : MonoBehaviour
     {
         if (livesText != null)
         {
-            livesText.text = "X " + currentLives;
+            livesText.text = "  " + currentLives;
         }
     }
 
