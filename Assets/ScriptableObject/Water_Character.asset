@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: WaterGuy
   maxLives: 3
   maxHealth: 100
-  moveSpeed: 12
+  moveSpeed: 6
   basicAttackPrefab: {fileID: 6078088443547589610, guid: e23b9f6d3ca90324491638dc8c72a25b, type: 3}
   skill1Prefab: {fileID: 3777373352202969672, guid: a4c901098a35f974a849ad46a57fee86, type: 3}
   skill2Prefab: {fileID: 9000100693719326031, guid: 55191b6a2c736264bb4fcdbd2c126d7b, type: 3}

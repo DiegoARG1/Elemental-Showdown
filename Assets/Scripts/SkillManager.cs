@@ -135,4 +135,30 @@ public class SkillManager : MonoBehaviour
             equippedBasicAttack.OnInputEnded(context);
         }
     }
+    public void StartAIBasicAttack(Vector2 direction)
+    {
+        if (equippedBasicAttack != null)
+        {
+            AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
+            equippedBasicAttack.OnInputStarted(context);
+        }
+    }
+
+    public void StayAIBasicAttack(Vector2 direction)
+    {
+        if (equippedBasicAttack != null)
+        {
+            AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
+            equippedBasicAttack.OnInputStay(context);
+        }
+    }
+
+    public void StopAIBasicAttack()
+    {
+        if (equippedBasicAttack != null)
+        {
+            AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = Vector2.zero };
+            equippedBasicAttack.OnInputEnded(context);
+        }
+    }
 }

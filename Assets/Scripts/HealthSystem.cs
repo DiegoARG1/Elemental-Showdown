@@ -65,4 +65,9 @@ public class HealthSystem : MonoBehaviour, IDamageable
     {
         OnDeath?.Invoke();
     }
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
 }

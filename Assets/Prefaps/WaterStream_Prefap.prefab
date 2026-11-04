@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5464545372619594289}
   - component: {fileID: 3257052002052923279}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4117387405222275586}
   - component: {fileID: 3856575179228857881}
   - component: {fileID: 7004086091375363566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WaterStream_Prefap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,8 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721713b03ca2b324bb86cc52cfd62481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterStreamAbility
-  damagePerTick: 10
-  tickInterval: 0.5
+  damagePerTick: 5
+  tickInterval: 1
+  maxFuel: 100
+  fuelCostPerSecond: 40
+  fuelRegenRate: 10
 --- !u!61 &3856575179228857881
 BoxCollider2D:
   m_ObjectHideFlags: 0
