@@ -14,7 +14,6 @@ public class InfiniteFuelBuff : MonoBehaviour, IAbility
 
         if (currentCooldown > 0)
         {
-            Debug.Log($"[Buff] Habilidad en recarga. Faltan {currentCooldown:F1} segundos.");
             return;
         }
 

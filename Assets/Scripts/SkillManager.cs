@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    [Header("Configuracion IA")]
+    public bool isAI = false;
+
+    public bool hasInfiniteAmmo { get; set; } = false;
     private GameObject basicAttackPrefab;
     private IAbility equippedBasicAttack;
     private IAbility equippedSkill1;
     private IAbility equippedSkill2;
-    public bool hasInfiniteAmmo { get; set; } = false;
 
     //Cargar el prefap con el characterbuilder
     public void Initialize(GameObject basicPrefab, GameObject skill1Prefap, GameObject skill2Prefap)
@@ -37,24 +40,30 @@ public class SkillManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CombatInputManager.OnBasicAttackStarted += HandleBasicAttackStarted;
-        CombatInputManager.OnBasicAttackStay += HandleBasicAttackStay;
-        CombatInputManager.OnBasicAttackEnded += HandleBasicAttackEnded;
+        if (!isAI)
+        {
+            CombatInputManager.OnBasicAttackStarted += HandleBasicAttackStarted;
+            CombatInputManager.OnBasicAttackStay += HandleBasicAttackStay;
+            CombatInputManager.OnBasicAttackEnded += HandleBasicAttackEnded;
 
-        CombatInputManager.OnSkill2Started += OnSkill2Started;
-        CombatInputManager.OnSkill2Stay += OnSkill2Stay;
-        CombatInputManager.OnSkill2Ended += OnSkill2Ended;
+            CombatInputManager.OnSkill2Started += OnSkill2Started;
+            CombatInputManager.OnSkill2Stay += OnSkill2Stay;
+            CombatInputManager.OnSkill2Ended += OnSkill2Ended;
+        }
     }
 
     private void OnDisable()
     {
-        CombatInputManager.OnBasicAttackStarted -= HandleBasicAttackStarted;
-        CombatInputManager.OnBasicAttackStay -= HandleBasicAttackStay;
-        CombatInputManager.OnBasicAttackEnded -= HandleBasicAttackEnded;
+        if (!isAI)
+        {
+            CombatInputManager.OnBasicAttackStarted -= HandleBasicAttackStarted;
+            CombatInputManager.OnBasicAttackStay -= HandleBasicAttackStay;
+            CombatInputManager.OnBasicAttackEnded -= HandleBasicAttackEnded;
 
-        CombatInputManager.OnSkill2Started -= OnSkill2Started;
-        CombatInputManager.OnSkill2Stay -= OnSkill2Stay;
-        CombatInputManager.OnSkill2Ended -= OnSkill2Ended;
+            CombatInputManager.OnSkill2Started -= OnSkill2Started;
+            CombatInputManager.OnSkill2Stay -= OnSkill2Stay;
+            CombatInputManager.OnSkill2Ended -= OnSkill2Ended;
+        }
     }
 
     private void HandleBasicAttackStarted(Vector2 direction)
@@ -115,6 +124,15 @@ public class SkillManager : MonoBehaviour
         if (equippedSkill2 != null)
         {
             equippedSkill2.OnInputEnded(new AbilityContext { Caster = gameObject, TargetDirection = Vector2.zero });
+        }
+    }
+    public void ExecuteAIAttack(Vector2 direction)
+    {
+        if (equippedBasicAttack != null)
+        {
+            AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
+            equippedBasicAttack.OnInputStarted(context);
+            equippedBasicAttack.OnInputEnded(context);
         }
     }
 }

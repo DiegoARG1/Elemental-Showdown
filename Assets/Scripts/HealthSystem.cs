@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour, IDamageable
 {
+    [Header("Estados")]
+    public bool isInvincible = false;
     // Eventos para desacoplar la UI y otros sistemas
     public event Action<float, float> OnHealthChanged; // Manda vida actual y vida maxima
     public event Action<int> OnLivesChanged;           // Manda las vidas restantes
@@ -25,7 +27,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
     public void TakeDamage(float amount)
     {
         // Si ya estamos muertos, ignoramos el daño extra
-        if (currentLives <= 0) return;
+        if (currentLives <= 0 || isInvincible) return;
 
         currentHealth -= amount;
 
