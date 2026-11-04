@@ -16,6 +16,11 @@ public class FireZone : MonoBehaviour
     {
         caster = creator;
         currentTickTimer = 0f;
+        IDamageable casterDamageable = caster.GetComponent<IDamageable>();
+        if (casterDamageable != null && enemiesInside.Contains(casterDamageable))
+        {
+            enemiesInside.Remove(casterDamageable);
+        }
         Destroy(gameObject, duration);
     }
     private void Update()

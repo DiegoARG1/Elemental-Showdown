@@ -4,7 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    private float moveSpeed;
+    [Header("Configuracion IA")]
+    public bool isAI = false;
+    public float moveSpeed;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator anim;
@@ -43,10 +46,18 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        if (isAI) return;
         moveInput = value.Get<Vector2>();
         moveInput.Normalize();
     }
-
+    public void SetMoveInput(Vector2 newMoveInput)
+    {
+        if (isAI)
+        {
+            moveInput = newMoveInput;
+            moveInput.Normalize();
+        }
+    }
     void FixedUpdate()
     {
         // Movemos al personaje
