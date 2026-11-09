@@ -121,7 +121,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 447
+        width: 826
         height: 814
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -129,32 +129,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e4a295127d003b8e0800000000000000
+      spriteID: 14b4ebc216a0a084e810faf7ec7d8c46
       internalID: -1678997312101602738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: corazon_roto_1
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 0
-        width: 470
-        height: 814
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 08851e7fac9e1a640800000000000000
-      internalID: 5089606111856777344
       vertices: []
       indices: 
       edges: []
@@ -163,7 +141,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0baca3a2b285c394d96b104413f2891e
     internalID: 0
     vertices: []
     indices: 
