@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SkillManager : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class SkillManager : MonoBehaviour
     private IAbility equippedBasicAttack;
     private IAbility equippedSkill1;
     private IAbility equippedSkill2;
+
+    private Animator anim;
+    private PlayerController playerController;
+    private bool isBasicAttacking = false;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+        playerController = GetComponent<PlayerController>();
+    }
 
     //Cargar el prefap con el characterbuilder
     public void Initialize(GameObject basicPrefab, GameObject skill1Prefap, GameObject skill2Prefap)
@@ -72,6 +83,8 @@ public class SkillManager : MonoBehaviour
         {
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
             equippedBasicAttack.OnInputStarted(context);
+            SetBasicAttackAnim(true);
+            if (playerController != null) playerController.SetAimDirection(direction);
         }
     }
 
@@ -81,6 +94,7 @@ public class SkillManager : MonoBehaviour
         {
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
             equippedBasicAttack.OnInputStay(context);
+            if (playerController != null) playerController.SetAimDirection(direction);
         }
     }
 
@@ -91,6 +105,8 @@ public class SkillManager : MonoBehaviour
             // Al soltar el dedo ya no hay direccion, mandamos Vector2.zero por defecto
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = Vector2.zero };
             equippedBasicAttack.OnInputEnded(context);
+            SetBasicAttackAnim(false);
+            if (playerController != null) playerController.ClearAimDirection();
         }
     }
 
@@ -124,23 +140,28 @@ public class SkillManager : MonoBehaviour
         if (equippedSkill2 != null)
         {
             equippedSkill2.OnInputEnded(new AbilityContext { Caster = gameObject, TargetDirection = Vector2.zero });
+            StartCoroutine(BriefSkillAttackAnim(0.3f));
         }
     }
-    public void ExecuteAIAttack(Vector2 direction)
-    {
-        if (equippedBasicAttack != null)
-        {
-            AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
-            equippedBasicAttack.OnInputStarted(context);
-            equippedBasicAttack.OnInputEnded(context);
-        }
-    }
+
+    //public void ExecuteAIAttack(Vector2 direction)
+    //{
+    //    if (equippedBasicAttack != null)
+    //    {
+    //        AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
+    //        equippedBasicAttack.OnInputStarted(context);
+    //        equippedBasicAttack.OnInputEnded(context);
+    //    }
+    //}
+
     public void StartAIBasicAttack(Vector2 direction)
     {
         if (equippedBasicAttack != null)
         {
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
             equippedBasicAttack.OnInputStarted(context);
+            SetBasicAttackAnim(true);
+            if (playerController != null) playerController.SetAimDirection(direction);
         }
     }
 
@@ -150,6 +171,7 @@ public class SkillManager : MonoBehaviour
         {
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = direction };
             equippedBasicAttack.OnInputStay(context);
+            if (playerController != null) playerController.SetAimDirection(direction);
         }
     }
 
@@ -159,6 +181,20 @@ public class SkillManager : MonoBehaviour
         {
             AbilityContext context = new AbilityContext { Caster = gameObject, TargetDirection = Vector2.zero };
             equippedBasicAttack.OnInputEnded(context);
+            SetBasicAttackAnim(false);
+            if (playerController != null) playerController.ClearAimDirection();
         }
+    }
+    private void SetBasicAttackAnim(bool state)
+    {
+        isBasicAttacking = state;
+        if (anim != null) anim.SetBool("IsAttacking", state);
+    }
+
+    private IEnumerator BriefSkillAttackAnim(float duration)
+    {
+        if (anim != null) anim.SetBool("IsAttacking", true);
+        yield return new WaitForSeconds(duration);
+        if (anim != null && !isBasicAttacking) anim.SetBool("IsAttacking", false);
     }
 }

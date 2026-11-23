@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Configuracion IA")]
     public bool isAI = false;
-    public float moveSpeed;
 
+    public float moveSpeed;
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator anim;
+    private bool isAiming = false;
+    private Vector2 aimDirection;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,10 +33,18 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("IsRunning", isMoving);
         }
 
-        if (isMoving)
+        if (isAiming)
+        {
+            if (aimDirection != Vector2.zero)
+            {
+                float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+                transform.rotation = Quaternion.Euler(0, 0, angle);
+            }
+        }
+
+        else if (isMoving)
         {
             float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg - 90f;
-
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
@@ -62,5 +72,18 @@ public class PlayerController : MonoBehaviour
     {
         // Movemos al personaje
         rb.linearVelocity = moveInput * moveSpeed;
+    }
+    public void SetAimDirection(Vector2 direction)
+    {
+        isAiming = true;
+        if (direction != Vector2.zero)
+        {
+            aimDirection = direction.normalized;
+        }
+    }
+
+    public void ClearAimDirection()
+    {
+        isAiming = false;
     }
 }

@@ -16,6 +16,18 @@ public class CharacterBuilder : MonoBehaviour
             return;
         }
 
+        Animator anim = GetComponent<Animator>();
+        if (anim != null && characterData.animatorController != null)
+        {
+            anim.runtimeAnimatorController = characterData.animatorController;
+        }
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && characterData.defaultSprite != null)
+        {
+            spriteRenderer.sprite = characterData.defaultSprite;
+        }
+
         HealthSystem health = GetComponent<HealthSystem>();
         PlayerController movement = GetComponent<PlayerController>();
 
@@ -30,6 +42,14 @@ public class CharacterBuilder : MonoBehaviour
         else
         {
             Debug.LogWarning($"[{gameObject.name}] El CharacterData no tiene un Basic Attack asignado.");
+        }
+        if (skills != null && !skills.isAI)
+        {
+            HUDManager hud = FindAnyObjectByType<HUDManager>();
+            if (hud != null)
+            {
+                hud.SetCharacterHUD(characterData);
+            }
         }
     }
 }

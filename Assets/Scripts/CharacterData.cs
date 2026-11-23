@@ -9,6 +9,14 @@ public class CharacterData : ScriptableObject
     public float maxHealth = 100f;
     public float moveSpeed = 5f;
 
+    [Header("Visuales")]
+    public RuntimeAnimatorController animatorController;
+    public Sprite defaultSprite;
+
+    [Header("Iconos HUD")]
+    public Sprite skill1Icon;
+    public Sprite skill2Icon;
+
     [Header("Habilidades (Prefabs)")]
     public GameObject basicAttackPrefab;
     public GameObject skill1Prefab;

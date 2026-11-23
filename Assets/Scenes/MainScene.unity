@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ead1b22ab6b024084977c56c274b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBuilder
-  characterData: {fileID: 11400000, guid: ff41a452e743f294986ee6c8133f3dd0, type: 2}
+  characterData: {fileID: 11400000, guid: 1ab9be21c4be4a245b1acc4ab224e7e5, type: 2}
 --- !u!114 &143758444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 316633494}
   - component: {fileID: 316633493}
   m_Layer: 5
-  m_Name: TargetIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,7 +1512,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 1126479155787005180, guid: 925627fe920f12a45b95b2a31a798ad3, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -2316,7 +2316,7 @@ GameObject:
   - component: {fileID: 628881138}
   - component: {fileID: 628881137}
   m_Layer: 5
-  m_Name: FireIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2339,7 +2339,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 352.6, y: 234.375}
+  m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628881137
 MonoBehaviour:
@@ -2363,7 +2363,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1535933778642710369, guid: 309b1e58c3efba442b4bf423644f9167, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -5330,6 +5330,8 @@ MonoBehaviour:
   tabAudioPage: {fileID: 2123694424}
   vibrationToggle: {fileID: 1218996178}
   gameOverPanel: {fileID: 2076426928}
+  skill1IconImage: {fileID: 628881137}
+  skill2IconImage: {fileID: 316633493}
 --- !u!4 &1775301486
 Transform:
   m_ObjectHideFlags: 0
@@ -5356,6 +5358,10 @@ PrefabInstance:
     - target: {fileID: 2445907550024681659, guid: 84efa1af6c09a0643abdca79ba4ec747, type: 3}
       propertyPath: m_Name
       value: Escenario2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369646700879701809, guid: 84efa1af6c09a0643abdca79ba4ec747, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 9101623412853135209, guid: 84efa1af6c09a0643abdca79ba4ec747, type: 3}
       propertyPath: m_LocalPosition.x
