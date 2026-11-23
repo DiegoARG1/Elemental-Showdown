@@ -12,6 +12,7 @@ public class CharacterData : ScriptableObject
     [Header("Visuales")]
     public RuntimeAnimatorController animatorController;
     public Sprite defaultSprite;
+    public Sprite selectionPortrait;
 
     [Header("Iconos HUD")]
     public Sprite skill1Icon;
