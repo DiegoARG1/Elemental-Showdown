@@ -10,6 +10,13 @@ public class CharacterBuilder : MonoBehaviour
 
     private void Start()
     {
+        SkillManager skills = GetComponent<SkillManager>();
+
+        if (!skills.isAI && CharacterSelection.selected != null)
+        {
+            characterData = CharacterSelection.selected;
+        }
+
         if (characterData == null)
         {
             Debug.LogError($"[{gameObject.name}] Falta asignar el CharacterData en el CharacterBuilder.");
@@ -34,7 +41,7 @@ public class CharacterBuilder : MonoBehaviour
         //Inyectar las variables del ScriptableObject
         health.Initialize(characterData.maxHealth, characterData.maxLives);
         movement.Initialize(characterData.moveSpeed);
-        SkillManager skills = GetComponent<SkillManager>();
+
         if (characterData.basicAttackPrefab != null)
         {
             skills.Initialize(characterData.basicAttackPrefab,characterData.skill1Prefab,characterData.skill2Prefab);
