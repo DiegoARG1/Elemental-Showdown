@@ -112,9 +112,16 @@ public class MatchManager : MonoBehaviour
 
     private void CleanArena()
     {
-        foreach (var fireball in FindObjectsByType<FireballProjectile>()) Destroy(fireball.gameObject);
-        foreach (var fireZone in FindObjectsByType<FireZone>()) Destroy(fireZone.gameObject);
-        foreach (var bomb in FindObjectsByType<WaterBombProjectile>()) Destroy(bomb.gameObject);
-        foreach (var waterZone in FindObjectsByType<WaterZone>()) Destroy(waterZone.gameObject);
+        foreach (var fireball in FindObjectsByType<FireballProjectile>())
+            fireball.gameObject.SetActive(false);
+
+        foreach (var fireZone in FindObjectsByType<FireZone>())
+            fireZone.gameObject.SetActive(false);
+
+        foreach (var bomb in FindObjectsByType<WaterBombProjectile>())
+            bomb.gameObject.SetActive(false);
+
+        foreach (var waterZone in FindObjectsByType<WaterZone>())
+            waterZone.gameObject.SetActive(false);
     }
 }

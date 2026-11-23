@@ -50,7 +50,7 @@ public class WaterBombAbility : MonoBehaviour, IAbility
 
         if (waterBombPrefab != null)
         {
-            GameObject bomb = Instantiate(waterBombPrefab, caster.transform.position, Quaternion.identity);
+            GameObject bomb = ObjectPool.Instance.Spawn(waterBombPrefab, caster.transform.position, Quaternion.identity);
 
             WaterBombProjectile script = bomb.GetComponent<WaterBombProjectile>();
             if (script != null)
