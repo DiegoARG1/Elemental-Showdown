@@ -16,6 +16,18 @@ public class CharacterBuilder : MonoBehaviour
             return;
         }
 
+        Animator anim = GetComponent<Animator>();
+        if (anim != null && characterData.animatorController != null)
+        {
+            anim.runtimeAnimatorController = characterData.animatorController;
+        }
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null && characterData.defaultSprite != null)
+        {
+            spriteRenderer.sprite = characterData.defaultSprite;
+        }
+
         HealthSystem health = GetComponent<HealthSystem>();
         PlayerController movement = GetComponent<PlayerController>();
 

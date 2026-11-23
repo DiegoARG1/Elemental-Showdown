@@ -22,6 +22,13 @@ public class WaterBombProjectile : MonoBehaviour
     {
         caster = shooter;
         targetPosition = destination;
+        Vector2 direction = (destination - transform.position).normalized;
+
+        if (direction != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
     }
 
     private void FixedUpdate()

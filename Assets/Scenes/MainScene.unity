@@ -5357,6 +5357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escenario2
       objectReference: {fileID: 0}
+    - target: {fileID: 4369646700879701809, guid: 84efa1af6c09a0643abdca79ba4ec747, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 9101623412853135209, guid: 84efa1af6c09a0643abdca79ba4ec747, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.2379036

@@ -129,7 +129,14 @@ public class FireConeAbility : MonoBehaviour,IAbility
         if (spriteVisual != null) spriteVisual.enabled = false;
         enemiesInside.Clear();
         currentTickTimer = 0f;
-        //Detener particulas en un futuro
+        if (caster != null)
+        {
+            Animator casterAnim = caster.GetComponent<Animator>();
+            if (casterAnim != null) casterAnim.SetBool("IsAttacking", false);
+
+            PlayerController pc = caster.GetComponent<PlayerController>();
+            if (pc != null) pc.ClearAimDirection();
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

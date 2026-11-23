@@ -25,20 +25,19 @@ public class WaterDiveAbility : MonoBehaviour, IAbility
     private IEnumerator DiveRoutine(GameObject caster)
     {
         HealthSystem health = caster.GetComponent<HealthSystem>();
-        SpriteRenderer sprite = caster.GetComponent<SpriteRenderer>();
+        Animator casterAnim = caster.GetComponent<Animator>();
 
         int originalLayer = caster.layer;
 
         if (health != null) health.isInvincible = true;
-
-        if (sprite != null) sprite.color = new Color(1f, 1f, 1f, 0.5f);
+        if (casterAnim != null) casterAnim.SetBool("IsSubmerged", true);
 
         caster.layer = LayerMask.NameToLayer("Submerged");
 
         yield return new WaitForSeconds(diveDuration);
 
         if (health != null) health.isInvincible = false;
-        if (sprite != null) sprite.color = Color.white;
+        if (casterAnim != null) casterAnim.SetBool("IsSubmerged", false);
         caster.layer = originalLayer;
     }
 
