@@ -19,6 +19,8 @@ public class MatchManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance?.PlayGameMusic();
+
         if (player1 != null && player2 != null)
         {
             SetupMatch(player1, player2);

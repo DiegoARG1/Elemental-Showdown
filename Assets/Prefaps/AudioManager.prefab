@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4842496588071622093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3454461157015725871}
+  - component: {fileID: 5304793355092524848}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3454461157015725871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842496588071622093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.93436, y: -0.176, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5304793355092524848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842496588071622093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b223f1da5f601d34a857de3f0f910ba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  menuMusic: {fileID: 8300000, guid: 363dae66c4a509745b8f040a8898b944, type: 3}
+  gameMusic: {fileID: 8300000, guid: 62391b7b74177284fbc0db345a030c7c, type: 3}
+  flamethrowerLoop: {fileID: 8300000, guid: d8944dd6c1f94444ab469b41d87888f5, type: 3}
+  fireballLaunch: {fileID: 8300000, guid: b645f1f4d8846b94b8682fdf64165ea8, type: 3}
+  fireballImpact: {fileID: 8300000, guid: d92000825c4f55c4f90154743582240f, type: 3}
+  infiniteFuel: {fileID: 8300000, guid: b25db6fd1b3141d4eb5c9adbf644f9e2, type: 3}
+  waterStreamLoop: {fileID: 8300000, guid: 1c0fab79fb864e548be26ca19ce39b73, type: 3}
+  waterBombLaunch: {fileID: 8300000, guid: 2fb9d5fa86a433847b0b51f7b0433065, type: 3}
+  waterBombImpact: {fileID: 8300000, guid: 5555602d961ad2449b41cd3c2997d9c5, type: 3}
+  waterDive: {fileID: 8300000, guid: c552d276e60d114448fa6a434ec1f13e, type: 3}
+  damageHit: {fileID: 8300000, guid: c536d79a89c9fda4193185d72222a879, type: 3}

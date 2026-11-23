@@ -19,6 +19,7 @@ public class InfiniteFuelBuff : MonoBehaviour, IAbility
 
         if (mySkillManager != null)
         {
+            AudioManager.Instance?.PlayInfiniteFuel();
             mySkillManager.hasInfiniteAmmo = true;//Se enciende la municion infinita
             currentCooldown = cooldown;
             //Aqui se pueden poner mas efectos de la habilidad

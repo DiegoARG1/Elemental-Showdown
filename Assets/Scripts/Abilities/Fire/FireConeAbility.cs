@@ -25,11 +25,14 @@ public class FireConeAbility : MonoBehaviour,IAbility
 
     private List<IDamageable> enemiesInside = new List<IDamageable>();
     private float currentTickTimer = 0f;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         currentFuel = maxFuel;
         coneCollider = GetComponent<Collider2D>();
         spriteVisual = GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         coneCollider.enabled = false;//El arma nace apagada
         if (spriteVisual != null) spriteVisual.enabled = false;//Apagado visual
     }
@@ -42,6 +45,7 @@ public class FireConeAbility : MonoBehaviour,IAbility
         if (currentFuel > 0 || isInfinite)
         {
             isFiring = true;
+            if (AudioManager.Instance != null) AudioManager.Instance.StartFlamethrower(audioSource);
             coneCollider.enabled = true;
             if (spriteVisual != null) spriteVisual.enabled = true;
 
@@ -137,6 +141,7 @@ public class FireConeAbility : MonoBehaviour,IAbility
             PlayerController pc = caster.GetComponent<PlayerController>();
             if (pc != null) pc.ClearAimDirection();
         }
+        if (AudioManager.Instance != null) AudioManager.Instance.StopLoop(audioSource);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
