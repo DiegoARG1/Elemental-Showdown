@@ -53,7 +53,7 @@ public class FireballAbility : MonoBehaviour, IAbility
 
         if (fireballPrefab != null)
         {
-            GameObject fireball = Instantiate(fireballPrefab, caster.transform.position, Quaternion.identity);
+            GameObject fireball = ObjectPool.Instance.Spawn(fireballPrefab, caster.transform.position, Quaternion.identity);
 
             FireballProjectile script = fireball.GetComponent<FireballProjectile>();
             if (script != null)

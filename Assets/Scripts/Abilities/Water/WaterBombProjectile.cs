@@ -20,6 +20,7 @@ public class WaterBombProjectile : MonoBehaviour
 
     public void Initialize(GameObject shooter, Vector3 destination)
     {
+        hasExploded = false;
         caster = shooter;
         targetPosition = destination;
         Vector2 direction = (destination - transform.position).normalized;
@@ -60,12 +61,12 @@ public class WaterBombProjectile : MonoBehaviour
         if (waterZonePrefab != null)
         {
             AudioManager.Instance?.PlayWaterBombImpact();
-            GameObject zone = Instantiate(waterZonePrefab, transform.position, Quaternion.identity);
+            GameObject zone = ObjectPool.Instance.Spawn(waterZonePrefab, transform.position, Quaternion.identity);
 
             WaterZone zoneScript = zone.GetComponent<WaterZone>();
             if (zoneScript != null) zoneScript.Initialize(caster);
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

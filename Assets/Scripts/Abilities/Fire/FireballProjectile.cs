@@ -20,6 +20,7 @@ public class FireballProjectile : MonoBehaviour
     }
     public void Initialize(GameObject shooter, Vector3 destination)
     {
+        hasExploded = false;
         caster = shooter;
         targetPosition = destination;
         Vector2 direction = (destination - transform.position).normalized;
@@ -66,12 +67,12 @@ public class FireballProjectile : MonoBehaviour
         if (fireZonePrefab != null)
         {
             AudioManager.Instance?.PlayFireballImpact();
-            GameObject zone = Instantiate(fireZonePrefab, transform.position, Quaternion.identity);
+            GameObject zone = ObjectPool.Instance.Spawn(fireZonePrefab, transform.position, Quaternion.identity);
 
             FireZone zoneScript = zone.GetComponent<FireZone>();
             if (zoneScript != null) zoneScript.Initialize(caster);
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

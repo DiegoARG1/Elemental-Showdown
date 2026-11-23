@@ -15,7 +15,8 @@ public class WaterZone : MonoBehaviour
     public void Initialize(GameObject creator)
     {
         caster = creator;
-        Destroy(gameObject, duration);
+        StopAllCoroutines();
+        StartCoroutine(DeactivateRoutine());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,7 +45,7 @@ public class WaterZone : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         foreach (var enemy in slowedEnemies)
         {
@@ -53,5 +54,12 @@ public class WaterZone : MonoBehaviour
                 enemy.Key.moveSpeed = enemy.Value;
             }
         }
+        slowedEnemies.Clear();
+    }
+
+    private System.Collections.IEnumerator DeactivateRoutine()
+    {
+        yield return new WaitForSeconds(duration);
+        gameObject.SetActive(false);
     }
 }

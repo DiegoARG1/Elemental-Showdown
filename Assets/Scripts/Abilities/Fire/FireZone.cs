@@ -21,7 +21,9 @@ public class FireZone : MonoBehaviour
         {
             enemiesInside.Remove(casterDamageable);
         }
-        Destroy(gameObject, duration);
+
+        StopAllCoroutines();
+        StartCoroutine(DeactivateRoutine());
     }
     private void Update()
     {
@@ -69,5 +71,15 @@ public class FireZone : MonoBehaviour
         {
             enemiesInside.Remove(target);
         }
+    }
+    private void OnDisable()
+    {
+        enemiesInside.Clear();
+    }
+
+    private System.Collections.IEnumerator DeactivateRoutine()
+    {
+        yield return new WaitForSeconds(duration);
+        gameObject.SetActive(false);
     }
 }
