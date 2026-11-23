@@ -13,6 +13,10 @@ public class CharacterData : ScriptableObject
     public RuntimeAnimatorController animatorController;
     public Sprite defaultSprite;
 
+    [Header("Iconos HUD")]
+    public Sprite skill1Icon;
+    public Sprite skill2Icon;
+
     [Header("Habilidades (Prefabs)")]
     public GameObject basicAttackPrefab;
     public GameObject skill1Prefab;

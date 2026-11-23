@@ -26,6 +26,10 @@ public class HUDManager : MonoBehaviour
     [Header("Game over")]
     public GameObject gameOverPanel;
 
+    [Header("Iconos de Habilidades")]
+    public Image skill1IconImage;
+    public Image skill2IconImage;
+
     private void Start()
     {
         if (pauseMenuPanel != null) pauseMenuPanel.SetActive(false);
@@ -141,5 +145,16 @@ public class HUDManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void SetCharacterHUD(CharacterData data)
+    {
+        if (data == null) return;
+
+        if (skill1IconImage != null && data.skill1Icon != null)
+            skill1IconImage.sprite = data.skill1Icon;
+
+        if (skill2IconImage != null && data.skill2Icon != null)
+            skill2IconImage.sprite = data.skill2Icon;
     }
 }

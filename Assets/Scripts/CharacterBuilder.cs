@@ -43,5 +43,13 @@ public class CharacterBuilder : MonoBehaviour
         {
             Debug.LogWarning($"[{gameObject.name}] El CharacterData no tiene un Basic Attack asignado.");
         }
+        if (skills != null && !skills.isAI)
+        {
+            HUDManager hud = FindAnyObjectByType<HUDManager>();
+            if (hud != null)
+            {
+                hud.SetCharacterHUD(characterData);
+            }
+        }
     }
 }
