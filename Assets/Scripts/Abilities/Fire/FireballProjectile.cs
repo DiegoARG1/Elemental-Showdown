@@ -29,6 +29,7 @@ public class FireballProjectile : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
+        AudioManager.Instance?.PlayFireballLaunch();
     }
 
     private void FixedUpdate()
@@ -64,6 +65,7 @@ public class FireballProjectile : MonoBehaviour
 
         if (fireZonePrefab != null)
         {
+            AudioManager.Instance?.PlayFireballImpact();
             GameObject zone = Instantiate(fireZonePrefab, transform.position, Quaternion.identity);
 
             FireZone zoneScript = zone.GetComponent<FireZone>();

@@ -29,6 +29,7 @@ public class WaterBombProjectile : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
+        AudioManager.Instance?.PlayWaterBombLaunch();
     }
 
     private void FixedUpdate()
@@ -58,6 +59,7 @@ public class WaterBombProjectile : MonoBehaviour
 
         if (waterZonePrefab != null)
         {
+            AudioManager.Instance?.PlayWaterBombImpact();
             GameObject zone = Instantiate(waterZonePrefab, transform.position, Quaternion.identity);
 
             WaterZone zoneScript = zone.GetComponent<WaterZone>();

@@ -3,6 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMenuMusic();
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadScene("SelectorPersonaje");

@@ -24,15 +24,18 @@ public class WaterStreamAbility : MonoBehaviour, IAbility
 
     private List<IDamageable> enemiesInside = new List<IDamageable>();
     private float currentTickTimer = 0f;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         currentFuel = maxFuel;
         streamCollider = GetComponentInChildren<BoxCollider2D>();
         spriteVisual = GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
         if (streamCollider != null) streamCollider.enabled = false;
         if (spriteVisual != null) spriteVisual.enabled = false;
+
     }
 
     public void OnInputStarted(AbilityContext context)
@@ -44,6 +47,7 @@ public class WaterStreamAbility : MonoBehaviour, IAbility
         {
             caster = context.Caster;
             isFiring = true;
+            if (AudioManager.Instance != null) AudioManager.Instance.StartWaterStream(audioSource);
 
             if (streamCollider != null) streamCollider.enabled = true;
             if (spriteVisual != null) spriteVisual.enabled = true;
@@ -135,6 +139,7 @@ public class WaterStreamAbility : MonoBehaviour, IAbility
             PlayerController pc = caster.GetComponent<PlayerController>();
             if (pc != null) pc.ClearAimDirection();
         }
+        if (AudioManager.Instance != null) AudioManager.Instance.StopLoop(audioSource);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

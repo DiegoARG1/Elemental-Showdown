@@ -24,6 +24,7 @@ public class WaterDiveAbility : MonoBehaviour, IAbility
 
     private IEnumerator DiveRoutine(GameObject caster)
     {
+        AudioManager.Instance?.PlayWaterDive();
         HealthSystem health = caster.GetComponent<HealthSystem>();
         Animator casterAnim = caster.GetComponent<Animator>();
 

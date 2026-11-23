@@ -44,6 +44,7 @@ public class HealthSystem : MonoBehaviour, IDamageable
         {
             ModuleManager.Instance.Vibrate();
         }
+        AudioManager.Instance?.PlayDamageHit();
     }
     private void LoseLife()
     {
@@ -52,7 +53,6 @@ public class HealthSystem : MonoBehaviour, IDamageable
 
         if (currentLives > 0)
         {
-            // Revivir (Restaurar vida para la siguiente ronda)
             currentHealth = maxHealth;
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
