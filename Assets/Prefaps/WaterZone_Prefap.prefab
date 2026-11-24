@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterZone
   slowMultiplier: 0.5
-  duration: 5
+  duration: 6
 --- !u!95 &1302867400973886031
 Animator:
   serializedVersion: 7
