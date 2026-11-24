@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireZone
   damagePerTick: 5
   tickInterval: 1
-  duration: 5
+  duration: 6
 --- !u!95 &7708499480673196581
 Animator:
   serializedVersion: 7

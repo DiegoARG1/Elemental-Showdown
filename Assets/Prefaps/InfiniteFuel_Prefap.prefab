@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteFuelBuff
   duration: 10
-  cooldown: 20
+  cooldown: 15
   currentCooldown: 0
